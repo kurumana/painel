@@ -192,6 +192,7 @@ def criar_pagina():
     try:
         data = request.get_json()
         if not data or 'fileName' not in data or 'content' not in data:
+            print("Dados inválidos recebidos:", data)  # Log para dados inválidos
             return jsonify({'error': 'Dados inválidos'}), 400
 
         # Certifique-se de que o diretório 'files' existe
@@ -204,7 +205,7 @@ def criar_pagina():
 
         return jsonify({'message': 'Arquivo criado com sucesso!', 'path': file_path}), 201
     except Exception as e:
-        print(f'Erro ao criar a página: {str(e)}')
+        print(f'Erro ao criar a página: {str(e)}')  # Log do erro
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
