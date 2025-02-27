@@ -318,18 +318,17 @@
                 });
 
                 if (!response.ok) {
-                    const result = await response.json();
-                    throw new Error(result.error || response.statusText || 'Erro ao criar o arquivo');
+                    const result = await response.text();
+                    console.error('Erro na resposta do servidor:', result);
+                    throw new Error('Erro ao criar o arquivo: ' + result);
                 }
 
                 const result = await response.json();
                 alert('Documento criado com sucesso!');
                 
-                // Limpar o formulário
                 document.getElementById('pageForm').reset();
                 document.getElementById('preview').style.display = 'none';
                 
-                // Atualizar a página atual
                 window.location.reload();
             } catch (error) {
                 console.error('Error:', error);
