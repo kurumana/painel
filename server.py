@@ -153,7 +153,7 @@ class FileHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-type', 'application/json')
                 self._send_cors_headers()
                 self.end_headers()
-                self._safe_write(json.dumps({'error': str(e)}).encode())
+                self._safe_write(json.dumps({'error': 'Internal server error'}).encode())  # Mensagem de erro genérica
 
     def do_OPTIONS(self):
         self.send_response(200)

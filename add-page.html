@@ -326,8 +326,9 @@
                     })
                 });
 
+                // Verifica se a resposta não é OK
                 if (!response.ok) {
-                    const result = await response.json();
+                    const result = await response.json().catch(() => ({ error: 'Erro desconhecido' }));
                     throw new Error(result.error || response.statusText || 'Erro ao criar o arquivo');
                 }
 
