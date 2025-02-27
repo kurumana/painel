@@ -198,6 +198,7 @@
             margin-left: 5px;
             vertical-align: top;
         }
+        
     </style>
 </head>
 
@@ -227,8 +228,7 @@
             </div>
 
             <button style="background-color: #01b901;" type="button" onclick="previewPage()">Visualizar</button>
-            <button style="background-color: #01b901;" type="button" onclick="savePage()"
-                style="margin-top: 10px;">Salvar</button>
+            <button style="background-color: #01b901;" type="button" onclick="savePage()" style="margin-top: 10px;">Salvar</button>
         </form>
 
         <div class="preview-container" style="display: none;" id="preview">
@@ -248,77 +248,73 @@
             const format = document.getElementById('format').value;
             const department = document.getElementById('department').value;
             const iframe = document.getElementById('iframe').value;
-
-            // Verifica se todos os campos foram preenchidos
+    
             if (!title || !format || !department || !iframe) {
                 alert('Por favor, preencha todos os campos.');
                 return;
             }
-
-            // Atualiza a pré-visualização com os valores do formulário
+    
             document.getElementById('previewTitle').textContent = title;
             document.getElementById('previewFormat').textContent = format;
             document.getElementById('previewDepartment').textContent = department;
             document.getElementById('previewIframe').innerHTML = iframe;
-
-            // Exibe a seção de pré-visualização
+    
             document.getElementById('preview').style.display = 'block';
         }
-
+    
         async function savePage() {
             const title = document.getElementById('title').value;
             const format = document.getElementById('format').value;
             const department = document.getElementById('department').value;
             const iframe = document.getElementById('iframe').value;
-
-            // Verifica se todos os campos foram preenchidos
+    
             if (!title || !format || !department || !iframe) {
                 alert('Por favor, preencha todos os campos.');
                 return;
             }
-
-            // Cria o conteúdo HTML para a nova página
+    
+            // Create the HTML content for the new page
             const pageContent = `<!DOCTYPE html>
-    <html lang="pt-BR">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${title}</title>
-        <meta name="description" content="${format}">
-        <meta name="nucleo" content="${department}">
-        <meta name="keywords" content="${department}">
-    
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                text-align: center;
-            }
-    
-            iframe {
-                width: 100%;
-                height: 550px;
-                border: none;
-            }
-        </style>
-    
-    </head>
-    
-    <body>
-        <div class="container">
-            <div class="video-container">
-                ${iframe}
-            </div>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <meta name="description" content="${format}">
+    <meta name="nucleo" content="${department}">
+    <meta name="keywords" content="${department}">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="video-container">
+            ${iframe}
         </div>
-    </body>
-    
-    </html>`;
+    </div>
+</body>
+
+</html>`;
 
             try {
-                // Converte o título para um formato amigável para URL
+                // Convert title to URL-friendly format
                 const fileName = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '.html';
-
-                // Envia o conteúdo para o servidor
+                
+                // Send the file content to the server
                 const response = await fetch('/create-file', {
                     method: 'POST',
                     headers: {
@@ -330,7 +326,6 @@
                     })
                 });
 
-                // Verifica se a requisição foi bem-sucedida
                 if (!response.ok) {
                     const result = await response.json();
                     throw new Error(result.error || response.statusText || 'Erro ao criar o arquivo');
@@ -338,15 +333,15 @@
 
                 const result = await response.json();
                 alert('Documento criado com sucesso!');
-
-                // Limpa o formulário e esconde a pré-visualização
+                
+                // Clear the form
                 document.getElementById('pageForm').reset();
                 document.getElementById('preview').style.display = 'none';
-
-                // Recarrega a página para atualizar o estado
+                
+                // Refresh the current page
                 window.location.reload();
-
-                // Atualiza a janela de pesquisa, se existir
+                
+                // Update the search page's files array if available
                 const searchWindow = window.opener;
                 if (searchWindow) {
                     if (!searchWindow.files) {
@@ -356,13 +351,13 @@
                     if (!searchWindow.files.includes(filePath)) {
                         searchWindow.files.push(filePath);
                     }
-                    // Chama a função loadFileData, se existir
+                    // Trigger loadFileData if it exists
                     if (typeof searchWindow.loadFileData === 'function') {
                         searchWindow.loadFileData();
                     }
                 }
             } catch (error) {
-                console.error('Erro:', error);
+                console.error('Error:', error);
                 alert('Erro ao criar a página: ' + error.message);
             }
         }
