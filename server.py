@@ -204,6 +204,7 @@ def criar_pagina():
 
         return jsonify({'message': 'Arquivo criado com sucesso!', 'path': file_path}), 201
     except Exception as e:
+        print(f'Erro ao criar a página: {str(e)}')
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
