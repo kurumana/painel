@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organograma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .manager {
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .manager img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .team {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .team-member {
+            text-align: center;
+            margin: 0 20px;
+            position: relative;
+        }
+        .team-member img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .line {
+            position: absolute;
+            background-color: black;
+        }
+        .line-vertical {
+            width: 2px;
+            height: 20px;
+            top: -20px;
+            left: 50%;
+        }
+        .line-horizontal {
+            height: 2px;
+            width: 100%;
+            top: -20px;
+            left: 0;
+        }
+        .specialist {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .team::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background-color: black;
+        }
+        .team::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Gerente -->
+        <div class="manager">
+            <img src="placeholder.jpg" alt="Foto do Gerente">
+            Edalmo Pacifico de Araujo Junior<br>
+            GERENTE CONTAGIADORTA SR
+        </div>
+
+        <!-- Linha vertical abaixo do gerente -->
+        <div class="line line-vertical" style="top: 140px;"></div>
+
+        <!-- Primeiro nível de equipe -->
+        <div class="team">
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                China's Health Site<br>
+                ASFCUAL<br>
+                ARSISTADIAL
+            </div>
+        </div>
+
+        <!-- Linha vertical abaixo do primeiro nível -->
+        <div class="line line-vertical" style="top: 280px;"></div>
+
+        <!-- Segundo nível de equipe -->
+        <div class="team">
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Apelerado da Silva Static<br>
+                ESPECIALISTA<br>
+                COPR
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Tiape de Santana Borges<br>
+                ESPECIALISTA<br>
+                SUPRINENTYA
+            </div>
+        </div>
+
+        <!-- Linha vertical abaixo do segundo nível -->
+        <div class="line line-vertical" style="top: 420px;"></div>
+
+        <!-- Terceiro nível de equipe -->
+        <div class="team">
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Abadito<br>
+                ANALISTA
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Velangton<br>
+                ANALISTA
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Jaccon<br>
+                ANALISTA
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Beatriz<br>
+                ANALISTA
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Isales<br>
+                ANALISTA
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Wesley<br>
+                ANALISTA
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Ostlaw<br>
+                ANALISTA
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Mauricio José<br>
+                ANALISTA
+            </div>
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Mauricio Guilherme<br>
+                ANALISTA
+            </div>
+        </div>
+
+        <!-- Linha vertical abaixo do terceiro nível -->
+        <div class="line line-vertical" style="top: 560px;"></div>
+
+        <!-- Quarto nível de equipe -->
+        <div class="team">
+            <div class="team-member">
+                <img src="placeholder.jpg" alt="Foto do Membro">
+                Upd<br>
+                ANALISTA
+            </div>
+        </div>
+    </div>
+</body>
+</html>

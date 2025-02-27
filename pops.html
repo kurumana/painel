@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pop's - Procedimento Operacional Padrão</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #f4f4f9;
+			color: #333;
+			margin: 0;
+			padding: 0;
+		}
+
+		h1 {
+			font-size: 2.5em;
+			font-weight: bold;
+			color: #333;
+			text-align: center;
+			margin: 30px auto;
+			padding: 15px 30px;
+			background-color: white;
+			border-radius: 8px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			width: fit-content;
+			max-width: 90%;
+		}
+
+		.container {
+			max-width: 90%;
+			margin: -35px auto;
+			padding: 20px;
+		}
+
+		.topics-container {
+			display: flex;
+			justify-content: space-between;
+			gap: 20px;
+			margin-top: 30px;
+		}
+
+		.topic-card {
+			background-color: #ffffff;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			flex: 2;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			min-width: 500px;
+			/* Define um mínimo para garantir responsividade */
+			max-width: 700px;
+			/* Define um máximo para evitar excessos */
+		}
+
+		.topic-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		}
+
+		.topic-card h2 {
+			font-size: 1.5rem;
+			color: #34495e;
+			margin-bottom: 10px;
+			text-justify: auto;
+			border-bottom: 2px solid #3498db;
+			padding-bottom: 10px;
+		}
+
+		.topic-card ul {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		.topic-card ul li {
+			margin: 5px 0;
+		}
+
+		.topic-card ul li a {
+			text-decoration: none;
+			color: #2980b9;
+			font-size: 1rem;
+			transition: color 0.3s ease;
+		}
+
+		.topic-card ul li a:hover {
+			color: #1c5980;
+		}
+
+		/* Responsividade */
+		@media (max-width: 768px) {
+			.topics-container {
+				flex-direction: column;
+			}
+
+			.topic-card {
+				margin-bottom: 20px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<script src="js/nav.js"></script>
+	<h1>Procedimento Operacional Padrão</h1>
+	<div class="container">
+		<div class="topics-container">
+			<div class="topic-card">
+				<h2>Suprimentos</h2>
+				<ul>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Ajuste de Item em KIT por Inativação de Cadastro.pdf">Ajustar
+							Item em Kit Após Inativação</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Alcada de Delegacao.pdf">Cadastro
+							de Alçadas de Delegação</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Configuração Executar Mat-Med ao Liberar a Prescrição.pdf">Cadastro
+							de Config. Executar Mat-Med ao Liberar a Presc.</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de DCB.pdf">Cadastro
+							DCB</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Demais Produtos e Serviços.pdf">Cadastro
+							de Demais Produtos e Serviços</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Estrutura - Grupo, Subgrupo e Classe.pdf">Cadastro
+							de Estrutura - Grupo, Sub-grupo e Classe</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Fabricante.pdf">Cadastro
+							Fabricante</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Marca.pdf">Cadastro
+							Marca</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Material Medico.pdf">Cadastro
+							Material Médico</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Medicamento Controlados.pdf">Cadastro
+							de Medicamento Controlado</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de OPME.pdf">Cadastro
+							OPME</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro de Padrões de Liberação de Materiais nos Estoques.pdf">Cadastro
+							de Padrões de Liberação de Materiais nos Estoques</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Cadastro Regra Guia TISS QT.pdf">Cadastro
+							Regra Guia TISS QT</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Ficha Técnica.pdf">Cadastro
+							Ficha Técnica</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Carga TUSS.pdf">Carga
+							TUSS</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Materiais para Substituição no Atendimento.pdf">Materiais
+							para Substituição no Atendimento</a></li>
+					<li><a
+							href="M:\Cadastro\Núcleo Suprimentos\Núcleo de Materiais\Arquivos Atalho\files\suprimentos\pops\Utilização Robô Hobots Ajuste Cadastro.pdf">Utilização
+							Robô Hobots Ajuste Cadastro</a></li>
+				</ul>
+			</div>
+			<div class="topic-card">
+				<h2>Assistencial</h2>
+				<ul>
+					<li><a href="pagina4.html">Tópico 4</a></li>
+					<li><a href="pagina5.html">Tópico 5</a></li>
+					<li><a href="pagina6.html">Tópico 6</a></li>
+				</ul>
+			</div>
+			<div class="topic-card">
+				<h2>CCPR</h2>
+				<ul>
+					<li><a href="pagina7.html">Tópico 7</a></li>
+					<li><a href="pagina8.html">Tópico 8</a></li>
+					<li><a href="pagina9.html">Tópico 9</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<footer>Cadastro - 2024</footer>
+	<script src="js/script.js"></script>
+</body>
+
+</html>

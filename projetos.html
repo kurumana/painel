@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/projetos.css">
+</head>
+<body>
+    <script src="js/nav.js"></script>
+    <h1>Gerenciamento de Projetos</h1>
+    
+    <div class="container projetos-container">
+        <div class="projetos-controles">
+            <div class="filtro-container">
+                <select id="filtroResponsavel" onchange="filtrarProjetos()">
+                    <option value="">Todos os Responsáveis</option>
+                </select>
+                <select id="filtroStatus" onchange="filtrarProjetos()">
+                    <option value="">Todos os Status</option>
+                    <option value="nao-iniciado">Não Iniciado</option>
+                    <option value="em-andamento">Em Andamento</option>
+                    <option value="interrompido">Interrompido</option>
+                    <option value="finalizado">Finalizado</option>
+                </select>
+            </div>
+            
+            <button onclick="abrirModal()" class="btn-novo">+ Novo Projeto</button>
+        </div>
+        
+        <div class="projetos-lista">
+            <div id="listaProjetos"></div>
+        </div>
+        
+        <div class="paginacao" id="paginacao"></div>
+    </div>
+
+    <!-- Modal para Criar/Editar Projeto -->
+    <div id="projetoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2 id="modalTitulo">Novo Projeto</h2>
+            <form id="formProjeto">
+                <input type="hidden" id="projetoId">
+                
+                <div class="form-group">
+                    <label for="nome">Nome do Projeto</label>
+                    <input type="text" id="nome" required placeholder="Digite o nome do projeto">
+                </div>
+                
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" required placeholder="Descreva os detalhes do projeto"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="responsavel">Responsável</label>
+                    <input type="text" id="responsavel" required placeholder="Nome do responsável">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dataInicio">Data de Início</label>
+                        <input type="date" id="dataInicio" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dataFim">Data de Conclusão</label>
+                        <input type="date" id="dataFim" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="status">Status do Projeto</label>
+                        <select id="status" required>
+                            <option value="nao-iniciado">Não Iniciado</option>
+                            <option value="em-andamento">Em Andamento</option>
+                            <option value="interrompido">Interrompido</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="progresso">Progresso</label>
+                        <input type="number" id="progresso" min="0" max="100" value="0" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary">Salvar Projeto</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/projetos.js"></script>
+</body>
+</html> 

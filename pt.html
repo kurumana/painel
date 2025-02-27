@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    /* Centralizar o conteúdo na tela */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url('M://Cadastro//Núcleo Suprimentos//Núcleo de Materiais//Arquivos Atalho//img//background.png') no-repeat center center fixed;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .login-container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 400px;
+    }
+
+    .login-container h1 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .login-container input {
+      width: 90%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .login-container button:hover {
+      background-color: #45a049;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 1rem;
+    }
+  </style>
+
+  <script>
+    // Código JavaScript obfuscado
+    (function () {
+      function verificarLogin() {
+        const usuarioInput = document.getElementById("usuario").value;
+        const senhaInput = document.getElementById("senha").value;
+
+        // Credenciais ofuscadas
+        const credenciais = {
+          u: atob("YWRtaW4="), // "admin"
+          s: atob("MTIzNDU2"), // "12345"
+        };
+
+        if (usuarioInput === credenciais.u && senhaInput === credenciais.s) {
+          alert("Login bem-sucedido! Redirecionando...");
+          window.location.href = "M://Cadastro//Núcleo Suprimentos//Núcleo de Materiais//Arquivos Atalho//pops.html"; // Página protegida
+        } else {
+          document.getElementById("erro").textContent = "Usuário ou senha inválidos!";
+        }
+      }
+
+      // Expor a função ao formulário
+      window.verificarLogin = verificarLogin;
+    })();
+  </script>
+
+</head>
+<body>
+  <div class="login-container">
+    <h1>Pagina Protegida</h1>
+    <form onsubmit="verificarLogin(); return false;">
+      <input type="text" id="usuario" placeholder="Usuário" required>
+      <input type="password" id="senha" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+      <p id="erro" class="error-message"></p>
+    </form>
+  </div>
+</body>
+</html>
