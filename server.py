@@ -191,6 +191,7 @@ app = Flask(__name__)
 def criar_pagina():
     try:
         data = request.get_json()
+        print("Dados recebidos:", data)  # Log para dados recebidos
         if not data or 'fileName' not in data or 'content' not in data:
             print("Dados inválidos recebidos:", data)  # Log para dados inválidos
             return jsonify({'error': 'Dados inválidos'}), 400
