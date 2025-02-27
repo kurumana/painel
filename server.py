@@ -3,7 +3,6 @@ import json
 import os
 import signal
 import sys
-from flask import Flask, request, jsonify
 
 class FileHandler(BaseHTTPRequestHandler):
     def _send_cors_headers(self):
@@ -184,33 +183,3 @@ def run(server_class=HTTPServer, handler_class=FileHandler, port=8000):
 
 if __name__ == '__main__':
     run()
-
-app = Flask(__name__)
-
-@app.route('/create-file', methods=['POST'])
-def criar_pagina():
-    try:
-        data = request.get_json()
-        print("Dados recebidos:", data)  # Log para dados recebidos
-        if not data or 'fileName' not in data or 'content' not in data:
-            print("Dados inválidos recebidos:", data)  # Log para dados inválidos
-            return jsonify({'error': 'Dados inválidos'}), 400
-
-        # Certifique-se de que o diretório 'files' existe
-        file_path = os.path.join(os.path.dirname(__file__), 'files', data['fileName'])
-        os.makedirs(os.path.dirname(file_path), exist_ok=True)
-
-        # Escreva o novo arquivo
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(data['content'])
-
-        return jsonify({'message': 'Arquivo criado com sucesso!', 'path': file_path}), 201
-    except OSError as e:
-        print(f'Erro ao criar o arquivo: {str(e)}')  # Log do erro específico
-        return jsonify({'error': 'Erro ao criar o arquivo: ' + str(e)}), 500
-    except Exception as e:
-        print(f'Erro ao criar a página: {str(e)}')  # Log do erro
-        return jsonify({'error': str(e)}), 500
-
-if __name__ == '__main__':
-    app.run(debug=True)

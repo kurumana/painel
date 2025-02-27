@@ -273,13 +273,10 @@
                 return;
             }
     
-            if (!isValidIframeContent(iframe)) {
-                alert('Conteúdo do iframe inválido.');
-                return;
-            }
-    
+            // Create the HTML content for the new page
             const pageContent = `<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -287,18 +284,22 @@
     <meta name="description" content="${format}">
     <meta name="nucleo" content="${department}">
     <meta name="keywords" content="${department}">
+
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
         }
+
         iframe {
             width: 100%;
             height: 550px;
             border: none;
         }
     </style>
+
 </head>
+
 <body>
     <div class="container">
         <div class="video-container">
@@ -306,11 +307,14 @@
         </div>
     </div>
 </body>
+
 </html>`;
 
             try {
+                // Convert title to URL-friendly format
                 const fileName = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '.html';
                 
+                // Send the file content to the server
                 const response = await fetch('/create-file', {
                     method: 'POST',
                     headers: {
@@ -323,27 +327,39 @@
                 });
 
                 if (!response.ok) {
-                    const result = await response.text();
-                    console.error('Erro na resposta do servidor:', result);
-                    throw new Error('Erro ao criar o arquivo: ' + result);
+                    const result = await response.json();
+                    throw new Error(result.error || response.statusText || 'Erro ao criar o arquivo');
                 }
 
                 const result = await response.json();
                 alert('Documento criado com sucesso!');
                 
+                // Clear the form
                 document.getElementById('pageForm').reset();
                 document.getElementById('preview').style.display = 'none';
                 
+                // Refresh the current page
                 window.location.reload();
+                
+                // Update the search page's files array if available
+                const searchWindow = window.opener;
+                if (searchWindow) {
+                    if (!searchWindow.files) {
+                        searchWindow.files = [];
+                    }
+                    const filePath = 'files/' + fileName;
+                    if (!searchWindow.files.includes(filePath)) {
+                        searchWindow.files.push(filePath);
+                    }
+                    // Trigger loadFileData if it exists
+                    if (typeof searchWindow.loadFileData === 'function') {
+                        searchWindow.loadFileData();
+                    }
+                }
             } catch (error) {
                 console.error('Error:', error);
                 alert('Erro ao criar a página: ' + error.message);
             }
-        }
-
-        function isValidIframeContent(content) {
-            // Adicione lógica para verificar se o conteúdo é um HTML válido
-            return true; // Placeholder, implemente a validação conforme necessário
         }
     </script>
 </body>
