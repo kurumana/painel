@@ -205,6 +205,9 @@ def criar_pagina():
             f.write(data['content'])
 
         return jsonify({'message': 'Arquivo criado com sucesso!', 'path': file_path}), 201
+    except OSError as e:
+        print(f'Erro ao criar o arquivo: {str(e)}')  # Log do erro específico
+        return jsonify({'error': 'Erro ao criar o arquivo: ' + str(e)}), 500
     except Exception as e:
         print(f'Erro ao criar a página: {str(e)}')  # Log do erro
         return jsonify({'error': str(e)}), 500
