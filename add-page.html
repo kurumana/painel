@@ -273,6 +273,11 @@
                 return;
             }
     
+            if (!isValidIframeContent(iframe)) {
+                alert('Conteúdo do iframe inválido.');
+                return;
+            }
+    
             // Create the HTML content for the new page
             const pageContent = `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -360,6 +365,11 @@
                 console.error('Error:', error);
                 alert('Erro ao criar a página: ' + error.message);
             }
+        }
+
+        function isValidIframeContent(content) {
+            // Adicione lógica para verificar se o conteúdo é um HTML válido
+            return true; // Placeholder, implemente a validação conforme necessário
         }
     </script>
 </body>
