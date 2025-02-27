@@ -3,6 +3,7 @@ import json
 import os
 import signal
 import sys
+from flask import Flask, request, jsonify
 
 class FileHandler(BaseHTTPRequestHandler):
     def _send_cors_headers(self):
@@ -183,3 +184,20 @@ def run(server_class=HTTPServer, handler_class=FileHandler, port=8000):
 
 if __name__ == '__main__':
     run()
+
+app = Flask(__name__)
+
+@app.route('/sua-rota-aqui', methods=['POST'])
+def criar_pagina():
+    try:
+        # Lógica para criar a página
+        # ...
+
+        # Retorne uma resposta JSON válida
+        return jsonify({'message': 'Página criada com sucesso!'}), 201
+    except Exception as e:
+        # Retorne um erro JSON em caso de falha
+        return jsonify({'error': str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
