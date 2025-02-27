@@ -187,16 +187,23 @@ if __name__ == '__main__':
 
 app = Flask(__name__)
 
-@app.route('/sua-rota-aqui', methods=['POST'])
+@app.route('/create-file', methods=['POST'])
 def criar_pagina():
     try:
-        # Lógica para criar a página
-        # ...
+        data = request.get_json()
+        if not data or 'fileName' not in data or 'content' not in data:
+            return jsonify({'error': 'Dados inválidos'}), 400
 
-        # Retorne uma resposta JSON válida
-        return jsonify({'message': 'Página criada com sucesso!'}), 201
+        # Certifique-se de que o diretório 'files' existe
+        file_path = os.path.join(os.path.dirname(__file__), 'files', data['fileName'])
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+        # Escreva o novo arquivo
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(data['content'])
+
+        return jsonify({'message': 'Arquivo criado com sucesso!', 'path': file_path}), 201
     except Exception as e:
-        # Retorne um erro JSON em caso de falha
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
