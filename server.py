@@ -103,7 +103,7 @@ class FileHandler(BaseHTTPRequestHandler):
                     with open(file_path, 'w', encoding='utf-8') as f:
                         f.write(data['content'])
 
-                    # Send response before updating search.html to prevent timeout
+                    # Send response
                     self.send_response(200)
                     self.send_header('Content-type', 'application/json')
                     self._send_cors_headers()
@@ -111,33 +111,6 @@ class FileHandler(BaseHTTPRequestHandler):
                     response = {'message': 'File created successfully', 'path': file_path}
                     if not self._safe_write(json.dumps(response).encode()):
                         return
-
-                    # Update search.html with the new file after sending response
-                    try:
-                        search_file_path = os.path.join(os.path.dirname(__file__), 'search.html')
-                        if os.path.exists(search_file_path):
-                            with open(search_file_path, 'r', encoding='utf-8') as f:
-                                content = f.read()
-                            
-                            # Find the files array
-                            files_start = content.find('const files = [')
-                            if files_start != -1:
-                                # Find the end of the array
-                                files_end = content.find('];', files_start)
-                                if files_end != -1:
-                                    # Get the current array content
-                                    array_content = content[files_start:files_end + 2]
-                                    # Create new array content with the new file
-                                    new_file_path = f'"files/{data["fileName"]}"'
-                                    new_array_content = array_content.replace('];', f',\n            {new_file_path}\n        ];')
-                                    # Replace the old array with the new one
-                                    content = content.replace(array_content, new_array_content)
-                                    # Write the updated content back to search.html
-                                    with open(search_file_path, 'w', encoding='utf-8') as f:
-                                        f.write(content)
-                    except Exception as e:
-                        print(f'Error updating search.html: {str(e)}')
-                        # Don't send error response here as we already sent success response
                 else:
                     raise ValueError('No content received')
             except json.JSONDecodeError as e:
@@ -153,7 +126,7 @@ class FileHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-type', 'application/json')
                 self._send_cors_headers()
                 self.end_headers()
-                self._safe_write(json.dumps({'error': 'Internal server error'}).encode())  # Mensagem de erro genérica
+                self._safe_write(json.dumps({'error': 'Internal server error'}).encode())
 
     def do_OPTIONS(self):
         self.send_response(200)
